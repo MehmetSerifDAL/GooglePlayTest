@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form>
+        <div class="row" >
+            <div>
+                <nav aria-label="Page navigation example">                
+                    <ul class="pagination" style="padding-top: 1px">
+                        <li style="padding-right: 5px">
+                            <h:commandButton value="prev" class="page-link" action="#{countryController.prev()}" style="border-radius: 30px"/>
+                        </li>
+                        <li style="padding-right: 5px" >
+                            <h:commandButton value="#{countryController.sayfaNumarasi()+1}" class="page-link" action="#{countryController.first()}" rendered="#{!countryController.sayfa_Bos_Mu() and countryController.page % countryController.sayfa_Adet !=1}" style="border-radius: 30px"/>
+                            <h:commandButton value="#{countryController.sayfaNumarasi()+1}" class="page-link" action="#{countryController.first()}" rendered="#{!countryController.sayfa_Bos_Mu() and countryController.page % countryController.sayfa_Adet ==1}" style="border-radius: 30px;background-color: aqua "/>
+                        </li>
+                        <li style="padding-right: 5px" >
+                            <h:commandButton value="#{countryController.sayfaNumarasi()+2}" class="page-link" action="#{countryController.second()}" rendered="#{!countryController.sayfa_Bos_Mu() and countryController.page % countryController.sayfa_Adet !=0}" style="border-radius: 30px"/>
+                            <h:commandButton value="#{countryController.sayfaNumarasi()+2}" class="page-link" action="#{countryController.second()}" rendered="#{!countryController.sayfa_Bos_Mu() and countryController.page % countryController.sayfa_Adet ==0}" style="border-radius: 30px;background-color: aqua "/>
+                        </li>
+                        <li style="padding-right: 5px">
+                            <h:commandButton value="next" class="page-link" action="#{countryController.next()}" style="border-radius: 30px" />
+                        </li>
+                        <li style="margin-top: 7px;padding-left: 30px" >
+                            <h:outputLabel value="#{countryController.page}" rendered="#{!countryController.sayfa_Bos_Mu()}" style="color: white"/> 
+                            of <h:outputLabel value="#{countryController.page_count}" style="color: white"/>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row" style="margin-left: 320px;margin-top: -50px">
+                <div> <h:inputText value="#{countryController.searchTerimi}" styleClass="form-control"/> </div>
+                <div style="margin-left: 10px"> <h:commandButton value="Ara" action="#{countryController.search()}" class="btn btn-primary"/> </div>
+                <div style="margin-left: 10px"> <h:commandButton value="clear search" action="#{countryController.clearSearch()}" class="btn badge-success"/> </div>            
+            </div>
+        </div>
+    </h:form>
+</ui:composition>
+

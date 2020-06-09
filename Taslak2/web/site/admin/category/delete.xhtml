@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+                <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <h:panelGroup layout="block" id="delete-modal" class="modal-content" >
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete Configration</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <pre>
+                <b>ID : </b> #{categoryControllers.category.id}<br/>
+                <b>Name : </b> #{categoryControllers.category.name}<br/>
+                <b>last_Date : </b> #{categoryControllers.category.last_date}<br/>
+                                </pre>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <h:form>
+                                <h:commandButton  onclick="$('.modal').modal('hide')" action="#{categoryControllers.delete}"  styleClass="btn btn-danger" value="Confirm">
+                                    <f:ajax  execute="@this" render="category-table"/>                                
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </h:commandButton>
+                            </h:form>
+
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+
+
+</ui:composition>

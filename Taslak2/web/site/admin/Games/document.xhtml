@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="sonuc">
+        <h:outputLabel value="islem basarili" rendered="#{gameDocumentController.sonuc==1}"/> 
+        <h:outputLabel value="islem tamamlanamadi" rendered="#{gameDocumentController.sonuc==0}"/> 
+    </h:form>
+    
+    <h:form id="upload" enctype="multipart/form-data">
+        <h:panelGroup rendered="#{gameDocumentController.docment.game.game_id==null}">
+            <hr/>
+            <h:inputFile validator="#{gameDocumentController.validate}" id="doc" value="#{gameDocumentController.part}" styleClass="custom-file" >
+            <f:ajax execute="@this" render="sil-game"/>
+            </h:inputFile><br/>                
+            <h:commandButton value="upload" action="#{gameDocumentController.upload}" rendered="#{gameDocumentController.eror_mesage ==null}" class="btn-lg btn-group-toggle btn-light btn-outline-success">
+                <f:ajax execute="@this" render="game-table sil-game"/>
+            </h:commandButton>
+           <!-- <h:message for="doc"/>  -->
+            <hr/>
+        </h:panelGroup>
+    </h:form>
+    
+    <h:form id="update" enctype="multipart/form-data">
+        <h:panelGroup rendered="#{gameDocumentController.docment.game.game_id!=null}">  
+            <hr/>
+            <h:inputFile id="doc1" value="#{gameDocumentController.part}" validator="#{gameDocumentController.validate}" styleClass="custom-file">
+                <f:ajax execute="@this" render="sil-game"/>
+            </h:inputFile>                     
+        </h:panelGroup>
+    </h:form>
+    <div>
+        <h:form id="sil-game">
+            <h:outputLabel value="#{gameDocumentController.eror_mesage}" rendered="#{gameDocumentController.eror_mesage !=null}"/>
+            <h:commandButton value="sil" action="#{gameDocumentController.game_reset()}" rendered="#{(gameDocumentController.part != null or gameDocumentController.eror_mesage !=null)}" class="btn-success btn-sm" style="margin-left: 20px" >
+                <f:ajax execute="@this" render="upload update sil-game"/>
+            </h:commandButton>
+        </h:form>
+    </div>
+    
+    <hr/> 
+</ui:composition>
+
+
+

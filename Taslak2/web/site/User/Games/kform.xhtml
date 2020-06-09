@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="kullanici-kform">   
+        <div style="padding-top: 20px;padding-bottom: 30px"></div>
+        <h:outputLabel value="Game Name : " style="font-size: 20px;color: blue"/>
+        <h:outputText value="#{extraController.gameOzeti().game.tmp_name}" style="color: white"/><br/>
+        <h:outputLabel value="Game Description : " style="font-size: 20px;color:orange"/>
+        <h:outputText value="#{extraController.gameOzeti().game.description}" style="color: white"/><br/>
+        <h:outputLabel value="Game Sure : " style="font-size: 20px;color: orange"/>
+        <h:outputText value="#{extraController.gameOzeti().game_sure}" style="color: white"/><br/>
+        <h:outputLabel value="Game Puan : " style="font-size: 20px;color: orange"/>
+        <h:outputText value="#{extraController.gameOzeti().game_puan}" style="color: white"/>     <br/>          
+        <h:outputLabel value="Game Dili : " style="font-size: 20px;color: orange"/>
+        <h:outputText value="#{extraController.gameOzeti().game.gameLan.dil_name}" style="color: white"/><br/>
+        <h:outputLabel value="Game Albumu : " style="font-size: 20px;color: orange"/>
+        <h:outputText value="#{extraController.gameOzeti().game.gamelib.name}" style="color: white"/><br/>
+        <h:outputLabel value="Game Yili  : " style="font-size: 20px;color: orange"/>
+        <h:outputText value="#{extraController.gameOzeti().game.yil}" style="color: white"/><br/>
+        <h:outputLabel value="Game Ulke : " style="font-size: 20px;color: orange"/>
+        <h:outputText value="#{extraController.gameOzeti().ulke.ulke }" style="color: white"/><br/>
+        <h:outputLabel value="GameDev Sirketi : " style="font-size: 20px;color: orange"/>
+        <h:outputText value="#{extraController.gameOzeti().game_sirketi}" style="color: white"/><br/>
+        <h:outputLabel value="LastUpdate : " style="font-size: 20px;color: orange"/>
+        <h:outputText value="#{extraController.gameOzeti().game.last_update}" style="color: white"/> 
+        <br/>
+         <h:outputLabel value="GameDev : " style="font-size: 20px;color: orange"/>         
+         <ul>             
+             <ui:repeat value="#{extraController.gameOzeti().game.gameGameDev}" var="gam">          
+            <h:outputText value="#{gam.name} #{gam.last_name}" style="color: white"/>             
+        </ui:repeat>
+         </ul>       
+        <h:outputLabel value="Game Category : " style="font-size: 20px;color: orange"/>
+        <ul>
+            <ui:repeat value="#{extraController.gameOzeti().game.gameCategory}" var="cat">          
+            <h:outputText value=" --> #{cat.name}" style="color: white"/>           
+        </ui:repeat>
+        </ul>
+        <br/>
+        <div style="padding-bottom: 400px"></div>
+    </h:form>
+</ui:composition>

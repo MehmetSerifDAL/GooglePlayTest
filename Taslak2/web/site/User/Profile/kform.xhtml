@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form style="background-color: black">
+        <hr/>          
+        <h:outputLabel value="islem basarili" rendered="#{newSignController.sonuc == 1}" style="color: black; font-size: larger"/> 
+        <h:outputLabel value="Girdiginiz bilgiler size ozel olmasi gerekir bu bilgiler baskasindan alınmıs olabilir...." rendered="#{newSignController.sonuc==0}"/> <br/>       
+        <h:commandButton value="Kaydet" action="#{newSignController.update2()}" styleClass="btn btn-primary" rendered="#{newSignController.edit}" style="margin-left: 100px"/>
+        <h:commandButton value="vazgec" action="#{newSignController.setEdit(false)}" styleClass="btn btn-primary" rendered="#{newSignController.edit}" style="background-color: orange;margin-left: 10px"/> 
+        <h:commandButton value="Edit" action="#{newSignController.updateForm2()}" styleClass="btn btn-primary" rendered="#{!newSignController.edit}" style="margin-left: 150px"/> 
+        <br/>
+        <label style="color: orange">Username :  </label><h:outputLabel value="#{newSignController.updateToUser.username}"/><br/>                    
+        <label style="color: orange">Password :  </label> <h:outputLabel value="#{newSignController.tmpPass}"/>
+        <h:inputText id="pass" class="form-control" value="#{newSignController.updateToUser.password}" validatorMessage="geçersiz yada alınmış bir sifre...." required="true" requiredMessage="password En az 4 hane ..." rendered="#{newSignController.edit}" >                   
+            <f:validateRegex pattern="^[A-Za-z0-9]+"/>
+            <f:validateLength minimum="4"/>                    
+        </h:inputText>
+        <h:message for="pass"/><br/> 
+        <label style="color: orange">Tel no: </label> <h:outputLabel value="#{newSignController.updateToUser.yetki.tel_no}"/>
+        <h:inputText id="tel_no" class="form-control" value="#{newSignController.updateToUser.yetki.tel_no}" validatorMessage="telefon NO sadece Rakam karaketrler içerir..." required="true" requiredMessage="telfon bos birakilmaz" rendered="#{newSignController.edit}" >
+            <f:validateRegex pattern="^[0-9]+"/>
+            <f:validateLength minimum="3" maximum="11"/>
+        </h:inputText>
+        <h:message for="tel_no"/><br/>  
+        <label style="color: orange">Isim : </label>  <h:outputLabel value="#{newSignController.updateToUser.yetki.name}" />
+        <h:inputText id="isim" class="form-control" value="#{newSignController.updateToUser.yetki.name}" validatorMessage="Isim sadece harf karaketrler içerir..." required="true" requiredMessage="isim bos bırakılmaz" rendered="#{newSignController.edit}">
+            <f:validateRegex pattern="^[A-Za-z]+"/>
+        </h:inputText>
+        <h:message for="isim"/><br/>  
+         <label style="color: orange">Soyisim : </label> <h:outputLabel  value="#{newSignController.updateToUser.yetki.last_name}"/>
+         <h:inputText id="soyisim" class="form-control" value="#{newSignController.updateToUser.yetki.last_name}" validatorMessage="Soyisim sadece harf karaketrler içerir..." rendered="#{newSignController.edit}">                
+            <f:validateRegex pattern="^([A-Za-z])*+"/>
+        </h:inputText>
+        <h:message for="soyisim"/><hr/>    
+        <div style="padding-bottom: 100px"></div>
+    </h:form>
+
+
+</ui:composition>                      

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="admin-form">
+        <h:panelGrid columns="2">
+            <f:facet name="header">
+                <h:outputLabel  rendered="#{adminControllers.admin.kullanici_id!=null}">
+                    <b> Update Yada Delete Yapacağiniz Id : </b>
+                </h:outputLabel>
+                <h:outputText value="#{adminControllers.admin.kullanici_id}" rendered="#{adminControllers.admin.kullanici_id!=null}"/>
+                <br/>
+                <h:message for="userr"/><br/>
+                <h:message for="pass"/><br/>
+                <h:message for="tel_no"/><br/>
+                <h:message for="isim"/><br/>
+                <h:message for="soyisim"/>
+                <h:outputLabel value="islem basarili" rendered="#{adminControllers.sonuc == 1}"/> 
+                <h:outputLabel value="Girdiginiz bilgiler size ozel olmasi gerekir bu bilgiler baskasindan alınmıs olabilir...." rendered="#{adminControllers.sonuc==0}"/>                                                                                                                      
+
+            </f:facet>
+            <div class="form-group">      
+                <h:outputLabel value=""/>
+                <h:outputLabel value="UserName : "/>
+                <h:inputText id="userr" class="form-control" value="#{adminControllers.admin.username}" validatorMessage="geçersiz yada alınmış bir Username...." requiredMessage="username En az 4 hane ...">
+                    <f:validateRegex pattern="^[A-Za-z]+([_A-Za-z0-9])*"/>
+                    <f:validateLength minimum="2"/> 
+                </h:inputText>
+                <h:outputLabel value="Password : "/>
+                <h:inputText id="pass" class="form-control" value="#{adminControllers.admin.password}" validatorMessage="geçersiz yada alınmış bir sifre...." requiredMessage="password En az 4 hane ...">                   
+                    <f:validateRegex pattern="^[A-Za-z0-9]+"/>
+                    <f:validateLength minimum="4"/>                    
+                </h:inputText>
+                <h:outputLabel value="Telefon no : "/>
+                <h:inputText id="tel_no" class="form-control" value="#{adminControllers.admin.yetki.tel_no}" validatorMessage="telefon NO sadece Rakam karaketrler içerir..." requiredMessage="telfon bos birakilmaz" >
+                    <f:validateRegex pattern="^[0-9]+"/>
+                    <f:validateLength minimum="3" maximum="11"/>
+                </h:inputText>
+                <h:outputLabel value="Isim : "/>
+                <h:inputText id="isim" class="form-control" value="#{adminControllers.admin.yetki.name}" validatorMessage="Isim sadece harf karaketrler içerir..." requiredMessage="isim bos bırakılmaz">
+                    <f:validateRegex pattern="^[A-Za-z]+"/>
+                </h:inputText>
+                <h:outputLabel  value="Soyisim : "/>
+                <h:inputText id="soyisim" class="form-control" value="#{adminControllers.admin.yetki.last_name}" validatorMessage="Soyisim sadece harf karaketrler içerir...">                
+                    <f:validateRegex pattern="^([A-Za-z])*+"/>
+                </h:inputText> 
+                <h:selectOneMenu value="#{adminControllers.admin.yetki.uye_Yetki}" rendered="#{adminControllers.admin.kullanici_id ==null and sessionScope.valid_admin.kullanici_id == 135}">                            
+                    <f:selectItem itemLabel="--------"/>
+                    <f:selectItem itemLabel="Kullanici" itemValue="0"/>
+                    <f:selectItem itemLabel="Admin" itemValue="1"/>
+                </h:selectOneMenu>
+
+            </div>
+            <div class="form-group">
+                <h:commandButton value="new Admin" rendered="#{adminControllers.admin.kullanici_id == null and sessionScope.valid_admin.kullanici_id == 135}" action="#{adminControllers.create()}" styleClass="btn btn-sm btn-primary">
+                    <f:ajax execute="admin-form" render="admin-table admin-form"/>
+                </h:commandButton>                                            
+                <h:commandButton value="Update" rendered="#{adminControllers.admin.kullanici_id!=null}" action="#{adminControllers.update()}" styleClass="btn btn-sm btn-primary">
+                    <f:ajax execute="admin-form" render="admin-table admin-form"/>
+                </h:commandButton>
+                <h:commandButton onclick="$('.modal').modal('show')"  value="Delete" rendered="#{adminControllers.admin.kullanici_id!=null and adminControllers.admin.kullanici_id!=135}" action="kullanici_liste" styleClass="btn btn-sm btn-danger">
+                    <f:ajax execute="@this" render="delete-modal"/>
+                </h:commandButton>
+                <h:commandButton value="clear Form" rendered="#{adminControllers.admin.kullanici_id!=null}" action="#{adminControllers.clearForm()}" styleClass="btn btn-sm btn-info">
+                    <f:ajax execute="admin-form" render="admin-form"/>
+                </h:commandButton>   
+               
+            </div>            
+        </h:panelGrid>        
+        <div style="padding-bottom: 500px"></div>
+    </h:form>
+
+</ui:composition>

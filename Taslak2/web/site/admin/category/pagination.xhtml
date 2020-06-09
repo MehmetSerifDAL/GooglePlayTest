@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form>
+    <div class="row">
+        <div>    
+        <nav aria-label="Page navigation example">                
+            <ul class="pagination" style="padding-top: 1px">
+                <li style="padding-right: 5px">
+                    <h:commandButton value="prev" class="page-link" action="#{categoryControllers.prev()}" style="border-radius: 30px"/>
+                </li>
+                <li style="padding-right: 5px" >
+                    <h:commandButton value="#{categoryControllers.sayfaNumarasi()+1}" class="page-link" action="#{categoryControllers.first()}" rendered="#{!categoryControllers.sayfa_Bos_Mu() and categoryControllers.page % categoryControllers.sayfa_Adet !=1}" style="border-radius: 30px"/>
+                    <h:commandButton value="#{categoryControllers.sayfaNumarasi()+1}" class="page-link" action="#{categoryControllers.first()}" rendered="#{!categoryControllers.sayfa_Bos_Mu() and categoryControllers.page % categoryControllers.sayfa_Adet ==1}" style="border-radius: 30px;background-color: aqua "/>
+                </li>
+                <li style="padding-right: 5px" >
+                    <h:commandButton value="#{categoryControllers.sayfaNumarasi()+2}" class="page-link" action="#{categoryControllers.second()}" rendered="#{!categoryControllers.sayfa_Bos_Mu() and categoryControllers.page % categoryControllers.sayfa_Adet !=0}" style="border-radius: 30px"/>
+                    <h:commandButton value="#{categoryControllers.sayfaNumarasi()+2}" class="page-link" action="#{categoryControllers.second()}" rendered="#{!categoryControllers.sayfa_Bos_Mu() and categoryControllers.page % categoryControllers.sayfa_Adet ==0}" style="border-radius: 30px;background-color: aqua "/>
+                </li>
+                <li style="padding-right: 5px">
+                    <h:commandButton value="next" class="page-link" action="#{categoryControllers.next()}" style="border-radius: 30px" />
+                </li>
+                <li style="margin-top: 7px;padding-left: 30px" >
+                    <h:outputLabel value="#{categoryControllers.page}" style="color: white" rendered="#{!categoryControllers.sayfa_Bos_Mu()}"/> 
+                of <h:outputLabel value="#{categoryControllers.page_count}" style="color: white"/>
+                </li>
+            </ul>
+        </nav>    
+  </div>
+        <div class="row" style="margin-left: 320px;margin-top: -50px">
+            <div> <h:inputText value="#{categoryControllers.searchTerimi}" styleClass="form-control"/> </div>
+            <div style="margin-left: 10px"> <h:commandButton value="Ara" action="#{categoryControllers.search()}" class="btn btn-primary"/> </div>
+            <div style="margin-left: 10px"> <h:commandButton value="clear search" action="#{categoryControllers.clearSearch()}" class="btn badge-success"/> </div>            
+        </div>
+  </div>
+    </h:form>
+</ui:composition>
+

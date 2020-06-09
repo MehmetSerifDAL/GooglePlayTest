@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+                 <h:form id="Ulke-form">
+                        <div class="form-group">
+                            <h:inputHidden value="#{countryController.ulkeSehir.ulke_id}"/>
+                            <h:outputLabel  rendered="#{countryController.ulkeSehir.ulke_id!=null}">
+                                <b> Update Yapacaginiz Category Id : </b>
+                            </h:outputLabel>
+                            <h:outputText value="#{countryController.ulkeSehir.ulke_id}" rendered="#{countryController.ulkeSehir.ulke_id!=null}"/>
+                            <br/>
+                            <h:outputLabel value="Ulke Name"/> 
+                            <h:inputText id="Ulke-girisi" class="form-control"  value="#{countryController.ulkeSehir.ulke}" />
+                            <h:message for="Ulke-girisi"/>
+                        </div>
+                        <div class="form-group">
+                            <h:commandButton value="Update" rendered="#{countryController.ulkeSehir.ulke_id!=null}" action="#{countryController.update()}" styleClass="btn btn-primary">
+                                <f:ajax execute="Ulke-form" render="Ulke-table Ulke-form"/>
+                            </h:commandButton>
+                            <h:commandButton value="clear Form" rendered="#{countryController.ulkeSehir.ulke_id!=null}" action="#{countryController.clearForm()}" style="margin-left: 10px" styleClass="btn btn-sm btn-info">
+                                <f:ajax execute="Ulke-form" render="Ulke-form"/>
+                            </h:commandButton>
+                            <h:commandButton value="create" rendered="#{countryController.ulkeSehir.ulke_id == null}" action="#{countryController.create()}" styleClass="btn btn-primary" >
+                                <f:ajax execute="Ulke-form" render="Ulke-table Ulke-form"/>
+                            </h:commandButton>      
+                        </div>
+                     <div style="padding-bottom: 500px"></div>
+                    </h:form>
+    
+</ui:composition>

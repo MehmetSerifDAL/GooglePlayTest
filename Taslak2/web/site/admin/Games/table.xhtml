@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:form id="sarki-table">        
+        <h:dataTable  value="#{gameDocumentController.docList}" var="GameDoc" styleClass="table table-striped btn-light ">    
+             
+            <h:column>                
+                <f:facet name="header" >Id </f:facet>
+                 #{GameDoc.doc_id}  
+                <div style="width: 10px;margin-bottom:5px;margin-top: 30px;">
+                    
+                <audio height="50" width="50" controls="cal">   
+                    <source src="/Taslak2/file/#{GameDoc.fileName}" type="audio/mp3"/>
+             </audio>
+                </div>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name </f:facet>
+                <h:commandLink value="#{GameDoc.game.tmp_name}" action="#{GameDocmentControllers.editForm(GameDoc)}"/>                    
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description </f:facet>
+                <h:outputLabel value="#{GameDoc.game.description.subSequence(0, 3)}" title="#{GameDoc.game.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Yil </f:facet>
+                    #{GameDoc.game.yil}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dil </f:facet>
+                    #{GameDoc.game.gameLan.dil_name}
+            </h:column>
+            <h:column>
+                <f:facet name="header"> Category </f:facet>
+                <ul style="margin-left: -30px">
+                    <ui:repeat value="#{GameDoc.game.gameCategory}" var="listCat">
+                        <li> #{listCat.fileName} </li>                                
+                    </ui:repeat>
+                </ul>
+            </h:column> 
+            <h:column>
+                <f:facet name="header" > GameDev </f:facet>
+                <ul style="margin-left: -40px">
+                    <ui:repeat value="#{GameDoc.game.gameGameDev}" var="listSar">
+                        <li> #{listSar.fileName} </li>                                
+                    </ui:repeat>
+                </ul>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header"> Album </f:facet>
+                    #{GameDoc.game.gamelib.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Date </f:facet>
+                    #{GameDoc.game.last_update}
+            </h:column>
+            
+                
+        </h:dataTable>
+    </h:form>
+
+</ui:composition>
+

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/site/template/templateKullanici.xhtml">
+
+    <ui:define name="content">
+
+        <div class="hero">
+            <div class="slider">
+                <ul class="slides">
+                    
+                    
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4" style="background-color: springgreen;margin-top: 50px">
+                                    <ui:include src="/site/User/Profile/resim_profile.xhtml"/>
+                                    <ui:include src="/site/User/Profile/kform.xhtml"/>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>                    
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>
+

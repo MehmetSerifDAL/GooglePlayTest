@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+                 <h:form id="admin-table">
+                     <div style="padding-top: 20px;padding-bottom: 30px;margin-left: 30px" >
+                     <h:commandButton value="delete admin" rendered="#{sessionScope.valid_admin.kullanici_id == 135}" action="/site/admin/admin/superAdmin.xhtml?faces-redirect=true" styleClass="btn btn-sm btn-danger"/> 
+                     </div>
+                     <h:dataTable value="#{adminControllers.adminList}" var="kullaniciList" styleClass="table table-striped btn-light "  >
+                            <h:column>
+                                <f:facet name="header" >Id </f:facet>
+                                <h:outputLabel value="#{kullaniciList.kullanici_id}"/>
+                            </h:column>                            
+                           <h:column>
+                                <f:facet name="header">Admin Name </f:facet>                                    
+                                <h:outputLabel value="#{kullaniciList.yetki.name}"/>                                 
+                            </h:column>
+                           <h:column>
+                                <f:facet name="header">Admin LastName </f:facet>
+                                <h:outputLabel value="#{kullaniciList.yetki.last_name}"/>
+                            </h:column>
+                           <h:column>
+                                <f:facet name="header">Admin Telefon </f:facet>
+                                <h:outputLabel value="#{kullaniciList.yetki.tel_no}"/>
+                            </h:column>
+                           <h:column>
+                                <f:facet name="header">username </f:facet>
+                                <h:commandLink value="#{uyelikYapanlarControllers.tmpUser}" rendered="#{kullaniciList.kullanici_id == sessionScope.valid_admin.kullanici_id}" action="#{adminControllers.updateForm(kullaniciList)}">
+                                <f:ajax execute="@this" render="admin-form"/>
+                                </h:commandLink>
+                            </h:column>
+                           <h:column>
+                                <f:facet name="header">password</f:facet>
+                                <h:outputLabel value="#{uyelikYapanlarControllers.tmpPass}" rendered="#{kullaniciList.kullanici_id == sessionScope.valid_admin.kullanici_id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Date </f:facet>
+                                    #{kullaniciList.yetki.last_update}
+                            </h:column>  
+                         <h:column> 
+                               <h:graphicImage value="/file/#{kullaniciList.yetki.resim.fileName}" width="60px" height="60px"/>                          
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>    
+</ui:composition>

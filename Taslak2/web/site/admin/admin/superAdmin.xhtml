@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputScript library="js" name="jquery-3.3.1.min.js"/>
+        <h:outputScript library="js" name="bootstrap.js"/>
+        <script src="/MuzikLand/resources/js/jquery-1.11.1.min.js"></script>		
+        <script src="/MuzikLand/resources/js/plugins.js"></script>
+        <script src="/MuzikLand/resources/js/app.js"></script>
+
+    </h:head>
+    <h:body>
+
+        <div class="hero">
+            <div class="slider">
+                <ul class="slides">
+                 
+                        <div class="container" >
+                            <h:form id="admin-table">
+                                <div style="padding-top: 20px;padding-bottom: 30px;margin-left: 30px" >
+                                    <h:commandButton value="geri don" action="/site/admin/admin/admin.xhtml?faces-redirect=true" styleClass="btn-lg btn-group-toggle btn-light btn-outline-success"/>
+                                </div>    
+                                <h:dataTable value="#{adminControllers.adminList}" var="kullaniciList" styleClass="table table-striped btn-light " rendered="#{sessionScope.valid_admin.kullanici_id==135}"  >
+                                    <h:column>
+                                        <f:facet name="header" >Id </f:facet>
+                                        <h:outputLabel value="#{kullaniciList.kullanici_id}"/>
+                                    </h:column>                            
+                                    <h:column>
+                                        <f:facet name="header">Admin Name </f:facet>                                    
+                                        <h:outputLabel value="#{kullaniciList.yetki.name}"/>                                 
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Admin LastName </f:facet>
+                                        <h:outputLabel value="#{kullaniciList.yetki.last_name}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Admin Telefon </f:facet>
+                                        <h:outputLabel value="#{kullaniciList.yetki.tel_no}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">username </f:facet>
+                                        <h:outputLabel value="#{kullaniciList.username}"/>                        
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">password</f:facet>
+                                        <h:outputLabel value="#{kullaniciList.password}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <h:commandButton value="delete" action="#{adminControllers.deleteFromSuper(kullaniciList)}" rendered="#{kullaniciList.kullanici_id!=135}" styleClass="btn btn-sm btn-danger"/>                                    
+                                    </h:column>                            
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+                        <div style="padding-bottom: 400px"></div>
+                    </li>
+                </ul>                    
+            </div>
+        </div>
+
+
+    </h:body>
+</html>

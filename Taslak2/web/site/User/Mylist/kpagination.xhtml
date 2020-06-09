@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+         <div class="row">     
+            
+            <div>
+                <nav aria-label="Page navigation example">                
+                    <ul class="pagination" style="padding-top: 1px">
+                        <li style="padding-right: 5px">
+                            <h:commandButton value="prev" class="page-link" action="#{userDataGameLibController.prev()}" rendered="#{userDataGameLibController.page_count != 0}" style="border-radius: 30px"/>
+                        </li>
+                        <li style="padding-right: 5px" >
+                            <h:commandButton value="#{user.sayfaNumarasi()+1}" class="page-link" action="#{userDataGameLibController.first()}" rendered="#{!userDataGameLibController.sayfa_Bos_Mu() and userDataGameLibController.page % userDataGameLibController.sayfa_Adet != 1}" style="border-radius: 30px"/>
+                            <h:commandButton value="#{userDataGameLibController.sayfaNumarasi()+1}" class="page-link" action="#{userDataGameLibController.first()}" rendered="#{!userDataGameLibController.sayfa_Bos_Mu() and userDataGameLibController.page % userDataGameLibController.sayfa_Adet == 1}" style="border-radius: 30px;background-color: aqua"/>
+                        </li>
+                        <li style="padding-right: 5px">
+                            <h:commandButton value="#{userDataGameLibController.sayfaNumarasi()+2}" class="page-link" action="#{userDataGameLibController.second()}" rendered="#{!userDataGameLibController.sayfa_Bos_Mu() and userDataGameLibController.page % userDataGameLibController.sayfa_Adet != 2}" style="border-radius: 30px"/>
+                            <h:commandButton value="#{userDataGameLibController.sayfaNumarasi()+2}" class="page-link" action="#{userDataGameLibController.second()}" rendered="#{!userDataGameLibController.sayfa_Bos_Mu() and userDataGameLibController.page % userDataGameLibController.sayfa_Adet == 2}" style="border-radius: 30px;background-color: aqua"/>
+                        </li>
+                        <li style="padding-right: 5px;" >
+                            <h:commandButton value="#{userDataGameLibController.sayfaNumarasi()+3}" class="page-link" action="#{userDataGameLibController.third()}" rendered="#{!userDataGameLibController.sayfa_Bos_Mu() and userDataGameLibController.page % userDataGameLibController.sayfa_Adet != 0}" style="border-radius: 30px"/>
+                            <h:commandButton value="#{userDataGameLibController.sayfaNumarasi()+3}" class="page-link" action="#{userDataGameLibController.third()}" rendered="#{!userDataGameLibController.sayfa_Bos_Mu() and userDataGameLibController.page % userDataGameLibController.sayfa_Adet == 0}" style="border-radius: 30px;background-color: aqua"/>
+                        </li>
+                        <li style="padding-right: 5px">
+                            <h:commandButton value="next" class="page-link" action="#{userDataGameLibController.next()}" rendered="#{userDataGameLibController.page_count != 0}"  style="border-radius: 30px" />
+                        </li>
+                        <li style="margin-top: 7px;padding-left: 20px" >
+                            <h:outputLabel value="#{userDataGameLibController.page}" rendered="#{!userDataGameLibController.sayfa_Bos_Mu()}"/> 
+                            of <h:outputLabel value="#{userDataGameLibController.page_count}"/>
+                            <h:outputLabel value=" Listen bos..." rendered="#{userDataGameLibController.page_count == 0 or userDataGameLibController.sayfa_Bos_Mu()}" style="margin-left: 20px"/>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+             <div class="row" style="margin-left: 70px">
+                <div> <h:inputText value="#{userDataGameLibController.searchTerimi}" styleClass="form-control"/> </div>
+                <div style="margin-left: 10px"> <h:commandButton value="Ara" action="#{userDataGameLibController.search()}" class="btn btn-primary"/> </div>
+                <div style="margin-left: 10px"> <h:commandButton value="clear search" action="#{userDataGameLibController.clearSearch()}" class="btn badge-success"/> </div>            
+            </div>
+        </div>
+    </h:form>
+</ui:composition>
+

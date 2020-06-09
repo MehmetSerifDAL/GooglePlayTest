@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/site/template/templateAdmin.xhtml">
+                 
+    <ui:define name="content">
+        <div class="row">
+                <div class="col-md-8">
+                    
+                    <ui:include src="/site/admin/Games/pagination.xhtml"/>
+                    <div style="margin-left: -50px">
+                    <ui:include src="/site/admin/Games/table.xhtml"/>
+                    </div>
+                </div>
+                
+            <div class="col-md-4">
+                <div style="margin-left: 50px">
+               <ui:include src="/site/admin/Games/document.xhtml"/>
+                </div>
+                <div style="margin-left: 50px">
+               <ui:include src="/site/admin/Games/form.xhtml"/>
+                </div>
+            </div>
+                <ui:include src="/site/admin/Games/delete.xhtml"/>
+            </div>
+    </ui:define>
+</ui:composition>
+

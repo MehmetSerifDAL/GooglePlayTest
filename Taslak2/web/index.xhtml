@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <meta charset="UTF-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1"></meta>
+
+        <title></title>
+        <!-- Loading third party fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" type="text/css"></link>
+        <link href="/Taslak2/resources/fonts/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
+        <!-- Loading main css file -->
+        <link rel="stylesheet" href="/Taslak2/resources/style.css"></link>
+    </head>
+    <body class="header-collapse">
+
+        <div id="site-content">
+            <header class="site-header">
+                <div class="container">
+                    <a href="/Taslak2/index.xhtml" id="branding">
+
+                    </a> <!-- #branding -->
+                    <h:form id="nav">
+                        <nav class="main-navigation">                                          
+                            <button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>                                             
+                            <ul class="menu">                                                    
+                                <li class="menu-item current-menu-item"><a href="/Taslak2/index.xhtml">Home</a></li>
+                                <li class="menu-item"> <h:commandLink value="Login/Sign" action="/login.xhtml?faces-redirect=true" rendered="#{sessionScope.valid_admin.kullanici_id== null and sessionScope.valid_user.kullanici_id== null}"/> </li>
+                                <li class="menu-item"> <h:commandLink value="Logout" action="/login.xhtml?faces-redirect=true" rendered="#{sessionScope.valid_admin.kullanici_id!= null or sessionScope.valid_user.kullanici_id!= null}"/> </li>
+                                <li class="menu-item"><a href="/Taslak2/about.xhtml">About</a></li>
+                                <li class="menu-item"><h:commandLink value="Games" action="/
+                                                                     .xhtml?faces-redirect=true" rendered="#{sessionScope.valid_admin.kullanici_id== null and sessionScope.valid_user.kullanici_id== null}"/></li>
+                                <li class="menu-item"> <h:commandLink value="My Page" action="/site/User/Games/Games.xhtml?faces-redirect=true" rendered="#{sessionScope.valid_admin.kullanici_id!= null or sessionScope.valid_user.kullanici_id!= null}"/> </li>                                
+                                <li class="menu-item ">
+                                    <div>
+                                        <h:outputLabel value="#{newSignController.tmpUser}" rendered="#{sessionScope.valid_admin.kullanici_id!= null or sessionScope.valid_user.kullanici_id!= null}" style="color: white;margin-right: 10px;font-style: italic;font-size: 25px"/>
+                                        <h:graphicImage value="/file/#{newSignController.updateToUser.yetki.resim.fileName}" rendered="#{sessionScope.valid_admin.kullanici_id!= null or sessionScope.valid_user.kullanici_id!= null}" width="70px" height="55px" style="border-radius: 30px" title="#{newSignController.tmpUser}">                                                                
+                                        </h:graphicImage>    
+                                    </div>
+                                </li> 
+                            </ul> <!-- .menu -->
+                        </nav> <!-- .main-navigation -->
+                    </h:form>
+                    <div class="mobile-menu"></div>
+                </div>
+            </header> <!-- .site-header -->
+
+            <div class="hero">
+                <div class="slider">
+                    <ul class="slides">
+                       
+
+
+                            </div>
+                        </li>
+                       
+
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- #site-content -->
+
+        <script src="/Taslak2/resources/js/jquery-1.11.1.min.js"></script>		
+        <script src="/Taslak2/resources/js/plugins.js"></script>
+        <script src="/Taslak2/resources/js/app.js"></script>
+    </body>
+
+</html>

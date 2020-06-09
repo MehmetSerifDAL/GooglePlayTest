@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="game-form" style="margin-left: -40px">                                                                                      
+        <h:panelGrid columns="2" bgcolor="#cce5ff" class=" col-md-auto" rendered="#{gameDocumentController.docment.doc_id!=null}">                                                                                   
+            <h:panelGrid columns="2">
+                <h:commandButton id="ekle" style="color: mediumblue " value="Update" action="#{gameDocumentController.update()}" onkeyup="#{gameDocumentController.setSonuc(-1)}" styleClass="btn-lg btn-group-toggle btn-light btn-outline-success"/>                                                                                                                                                                      
+                <h:commandButton onclick="$('.modal').modal('show')" value="delete" action="gamelar" styleClass="btn btn-danger" >
+                    <f:ajax execute="@this" render="delete-modal"/>
+                </h:commandButton>                           
+                <h:commandButton value="clearForm" action="#{gameDocumentController.back()}" styleClass="btn btn-primary btn-outline-success"/>                                                                                                                         
+            </h:panelGrid>
+            <f:facet name="header">
+                <h:outputLabel  rendered="#{gameDocumentController.docment.game.game_id!=null}">
+                    <b> Update yada delete Yapacağiniz Game Id : </b>
+                    <h:outputText value="#{gameDocumentController.docment.game.game_id}" rendered="#{gameDocumentController.docment.game.game_id!=null}"/>
+                    <br/>
+                </h:outputLabel>
+                <h:message for="name"/><br/>
+                <h:message for="Description"/><br/>
+                <h:message for="yil"/><br/>                            
+            </f:facet>                     
+            <div class="form-group">   
+                <h:outputLabel value="***************"/>
+                <h:outputLabel value="Game Name : #{gameDocumentController.docment.fileName}" style="padding-left: 40px"/>
+                <Label for="name"> Game Name                                    
+                </Label>
+                <h:inputText id="name" value="#{gameDocumentController.docment.game.tmp_name}" styleClass="form-control" />
+                <Label for="Description"> Game Description </Label>
+                <h:inputTextarea id="Description" value="#{gameDocumentController.docment.game.description}" styleClass="form-control" required="true" requiredMessage="*** 2- en az 5 tane harf içereck bir cumle***">
+                    <f:validateLength minimum="5"/>
+                </h:inputTextarea>
+                <Label for="yil"> Game Yil </Label>
+                <h:inputText id="yil" value="#{gameDocumentController.docment.game.yil}" styleClass="form-control" requiredMessage="*** 3-yanlis tarih\n">
+                    <f:validateLongRange minimum="1900" maximum="2020"/>
+                </h:inputText>  
+                <Label for="GameDev">GameDev </Label>
+                <h:selectManyListbox  styleClass="custom-select" id="gameci" value="#{gameDocumentController.docment.game.gameGameDev}" converter="gameDevConverter" size="4">
+                    <f:selectItems value="#{gameDocumentController.gamecontrol.gameDevKontrol.allGameDev()}" var="gameci" itemValue="#{gamedev}" itemLabel="#{game.name}  #{gameci.last_name}"/>                                
+                </h:selectManyListbox>
+                <Label for="category"> Category </Label>
+                <h:selectManyListbox  styleClass="custom-select" id="category" value="#{gameDocumentController.docment.game.gameCategory}" converter="categoryConverter" size="4">
+                    <f:selectItems value="#{gameDocumentController.gamecontrol.categoryControl.allClist()}" var="category" itemValue="#{category}" itemLabel="#{category.name}"/>                                
+                </h:selectManyListbox>
+                <Label for="secilen-dil"> Dil </Label>
+                <h:selectOneMenu  styleClass="custom-select" id="secilen-dil" value="#{gameDocumentController.docment.game.gameLan}" converter="LanguageConventer" >                                        
+                    <f:selectItems value="#{gameDocumentController.gamecontrol.dilControl.allDil()}" var="dil" itemValue="#{dil}" itemLabel="#{dil.dil_name}"/>                                
+                </h:selectOneMenu>                              
+                <Label for="secilen-album"> Game Library </Label>
+                <h:selectOneMenu styleClass="custom-select" id="secilen-album" value="#{gameDocumentController.docment.game.gamelib}" converter="albumConverter">
+                    <f:selectItems value="#{gameDocumentController.gamecontrol.albumControl.allGamelibList()}" var="album" itemValue="#{album}" itemLabel="#{album.name}"/>                                
+                </h:selectOneMenu>
+            </div>
+            <h:outputLabel value=""/><h:outputLabel value=""/><h:outputLabel value=""/><h:outputLabel value=""/>
+        </h:panelGrid>
+        <div style="padding-bottom: 400px"></div>
+    </h:form>  
+
+</ui:composition>
+
+
+

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <div>
+            <h:outputLabel value="Category   :  #{categoryControllers.find(GameController.id)}" style="color: white;margin-left: 50px"/>
+            
+            <div class="row">
+                <h:commandButton value="Classics" action="#{GameController.categoryA()}" style="margin-left: 5px" class="btn-primary"/>
+                <h:commandButton value="Documentary" action="#{GameController.categoryB()}" style="margin-left: 5px"  class="btn-primary"/>
+                <h:commandButton value="Drama" action="#{GameController.categoryC()}" style="margin-left: 5px"  class="btn-primary"/>
+                <h:commandButton value="Family" action="#{GameController.categoryD()}" style="margin-left: 5px"   class="btn-primary"/>
+                <h:commandButton value="Foreign" action="#{GameController.categoryE()}" style="margin-left: 5px"  class="btn-primary"/>
+                <h:commandButton value="Games" action="#{GameController.categoryF()}" style="margin-left: 5px"  class="btn-primary"/>
+                <h:commandButton value="All" action="#{GameController.hepsi()}" style="margin-left: 5px"  class="btn-primary"/>
+
+            </div>
+        </div>
+        <div class="row" style="margin-top: 40px">
+            <div>
+                <nav aria-label="Page navigation example">                
+                    <ul class="pagination" style="padding-top: 1px;margin-top: -10px">
+                        <div style="margin-left: 10px;margin-top: -10px">
+                            <h:commandButton value="prev" class="page-link" action="#{GameController.prev()}" rendered="#{GameController.page_count != 0}"  style="border-radius: 30px"/>                            
+                        </div>
+                        <div style="margin-left: 10px;margin-top: -10px">
+                            <h:commandButton value="#{GameController.sayfaNumarasi()+1}" class="page-link" action="#{GameController.first()}" rendered="#{!GameController.sayfa_Bos_Mu() and GameController.page % GameController.sayfa_Adet != 1}" style="border-radius: 30px"/>
+                            <h:commandButton value="#{GameController.sayfaNumarasi()+1}" class="page-link" action="#{GameController.first()}" rendered="#{!GameController.sayfa_Bos_Mu() and GameController.page % GameController.sayfa_Adet == 1}" style="border-radius: 30px;background-color: aqua"/>
+                        </div>
+                        <div style="margin-left: 10px;margin-top: -10px">
+
+                            <h:commandButton value="#{GameController.sayfaNumarasi()+2}" class="page-link" action="#{GameController.second()}" rendered="#{!GameController.sayfa_Bos_Mu() and GameController.page % GameController.sayfa_Adet != 2}" style="border-radius: 30px"/>
+                            <h:commandButton value="#{GameController.sayfaNumarasi()+2}" class="page-link" action="#{GameController.second()}" rendered="#{!GameController.sayfa_Bos_Mu() and GameController.page % GameController.sayfa_Adet == 2}" style="border-radius: 30px;background-color: aqua"/>
+                        </div>
+                        <div style="margin-left: 10px;margin-top: -10px">
+                            <h:commandButton value="#{GameController.sayfaNumarasi()+3}" class="page-link" action="#{GameController.third()}" rendered="#{!GameController.sayfa_Bos_Mu() and GameController.page % GameController.sayfa_Adet != 0}" style="border-radius: 30px"/>
+                            <h:commandButton value="#{GameController.sayfaNumarasi()+3}" class="page-link" action="#{GameController.third()}" rendered="#{!GameController.sayfa_Bos_Mu() and GameController.page % GameController.sayfa_Adet == 0}" style="border-radius: 30px;background-color: aqua"/>
+                        </div>
+                        <div style="margin-left: 10px;margin-top: -10px">
+                            <h:commandButton value="next" class="page-link" action="#{GameController.next()}" rendered="#{GameController.page_count != 0}"  style="border-radius: 30px" />
+                        </div>
+                        <div style="margin-left: 5px">
+                            <h:outputLabel value="#{GameController.page}" rendered="#{!GameController.sayfa_Bos_Mu()}"/> 
+                            of <h:outputLabel value="#{GameController.page_count}"/>
+                            <h:outputLabel value=" sayfa bos..." rendered="#{GameController.page_count == 0 or GameController.sayfa_Bos_Mu()}" style="margin-left: 20px"/>
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row" style="margin-left: 315px;margin-top: -50px">
+                <div> <h:inputText value="#{GameController.searchTerimi}" styleClass="form-control" style="width: 200px"/> </div>
+                <div style="margin-left: 5px"> <h:commandButton value="Ara" action="#{GameController.search()}" class="btn btn-primary"/> </div>
+                <div style="margin-left: 5px"> <h:commandButton value="Yenile" action="#{GameController.clearSearch()}" class="btn badge-success"/> </div>            
+            </div>
+        </div>
+    </h:form>
+</ui:composition>
+

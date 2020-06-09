@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="dil-form">
+        <div class="form-group">
+            <h:inputHidden value="#{languageController.dil.dil_id}"/>
+            <h:outputLabel  rendered="#{languageController.dil.dil_id!=null}">
+                <b> Update Yapacağiniz Category Id : </b>
+            </h:outputLabel>
+            <h:outputText value="#{languageController.dil.dil_id}" rendered="#{languageController.dil.dil_id!=null}"/>
+            <br/>
+            <h:outputLabel value="Dil Name"/> 
+            <h:inputText id="dil-girisi" class="form-control"  value="#{languageController.dil.dil_name}" validatorMessage="gecersiz dil girisi" required="true" requiredMessage="Boş birakilmaz..">
+                <f:validateRegex pattern="^[A-Za-z]+"/>                                
+            </h:inputText>
+            <h:message for="dil-girisi"/>
+        </div>
+        <div class="form-group">
+            <h:commandButton value="Update" rendered="#{languageController.dil.dil_id!=null}" action="#{languageController.update()}" styleClass="btn btn-primary">
+                <f:ajax execute="dil-form" render="dil-table dil-form"/>
+            </h:commandButton>
+            <h:commandButton value="clear Form" rendered="#{languageController.dil.dil_id!=null}" action="#{languageController.clearForm()}" style="margin-left: 10px" styleClass="btn btn-sm btn-info">
+                <f:ajax execute="dil-form" render="dil-form"/>
+            </h:commandButton>
+            <h:commandButton value="create" rendered="#{languageController.dil.dil_id == null}" action="#{languageController.creat()}" styleClass="btn btn-primary" >
+                <f:ajax execute="dil-form" render="dil-table dil-form"/>
+            </h:commandButton>      
+        </div>
+        <div style="padding-bottom: 500px"></div>
+    </h:form>
+
+</ui:composition>

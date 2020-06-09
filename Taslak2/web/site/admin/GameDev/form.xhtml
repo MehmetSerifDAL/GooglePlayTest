@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="gameDev-form">
+        
+        <div class="form-group" style="margin-top: 30px">
+            <h:commandButton value="Update" rendered="#{GameDevController.gameDev.gameDev_id!=null}" action="#{GameDevController.update()}" styleClass="btn btn-primary">
+                <f:ajax execute="gameDev-form" render="sil-resim kullanici_resim gameDev-table gameDev-form"/>
+            </h:commandButton>
+            <h:commandButton value="clear Form" rendered="#{GameDevController.gameDev.gameDev_id!=null}" action="#{GameDevController.clearForm()}" style="margin-left: 10px" styleClass="btn btn-sm btn-info">
+                <f:ajax execute="gameDev-form" render="sil-resim kullanici_resim gameDev-form"/>
+            </h:commandButton>
+            <h:commandButton value="create" rendered="#{GameDevController.gameDev.gameDev_id == null}" action="#{GameDevController.create()}" styleClass="btn btn-primary" >
+                <f:ajax execute="gameDev-form" render="gameDev-table gameDev-form"/>
+            </h:commandButton>      
+        </div>
+        
+        <div class="form-group">
+            <h:outputLabel  rendered="#{GameDevController.gameDev.gameDev_id!=null}">
+                <b> Update Yapacağiniz Game Developer Id : </b>
+            </h:outputLabel>
+            <h:outputText value="#{GameDevController.gameDev.gameDev_id}" rendered="#{GameDevController.gameDev.gameDev_id!=null}"/>
+            <br/>
+            <h:outputLabel value="Game Developer name"/> 
+            <h:inputText id="isim" class="form-control"  value="#{GameDevController.gameDev.name}" />
+            <h:message for="isim"/><br/>
+            <h:outputLabel value="Game Developer Surname"/> 
+            <h:inputText id="soyisim" class="form-control"  value="#{GameDevController.gameDev.last_name}" />                            
+            <h:message for="soyisim"/><br/>
+            <h:outputLabel value="Game Developer Yasi"/> 
+            <h:inputText class="form-control"  value="#{GameDevController.gameDev.yas}"/>
+
+            <Label for="category"> Album </Label>
+            <h:selectManyListbox  styleClass="custom-select" id="category" value="#{GameDevController.gameDev.gameDevAlbum}" converter="albumConverter" size="4">
+                <f:selectItems value="#{GameDevController.albumKontrol.allAlbumList()}" var="album" itemValue="#{album}" itemLabel="#{album.name}"/>                                
+            </h:selectManyListbox>
+
+            <Label for="secilen-Ulke"> Ulke </Label>
+            <h:selectOneMenu styleClass="custom-select" id="secilen-ulke" value="#{GameDevController.gameDev.ulke}" converter="ulkeConverter">
+                <f:selectItems value="#{GameDevController.ulkeList.allUlke()}" var="ulke" itemValue="#{ulke}" itemLabel="#{ulke.ulke}"/>                                
+            </h:selectOneMenu> 
+
+        </div>
+        <div style="padding-bottom: 500px"></div>
+    </h:form>
+
+</ui:composition>

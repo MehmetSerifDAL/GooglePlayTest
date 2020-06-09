@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="extra-table">
+        <h:dataTable value="#{extraController.exList}" var="extra" styleClass="table table-striped btn-light "  >
+            <h:column>
+                <f:facet name="header" >Id </f:facet>
+                    #{extra.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sarki </f:facet>
+                <h:commandLink value="#{extra.game.tmp_name}" action="#{extraController.updateform(extra)}" >                                    
+                </h:commandLink>
+            </h:column>
+            <h:column>
+                <f:facet name="header" >Sarkı Puan</f:facet>
+                    #{extra.game_puan}
+            </h:column>
+            <h:column>
+                <f:facet name="header" >Sarkı Sure</f:facet>
+                    #{extra.game_sure}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ulke </f:facet>
+                    #{extra.ulke.ulke}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sarkici Sirketi </f:facet>
+                    #{extra.gameci_sirketi}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Date </f:facet>
+                    #{extra.last_update}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton onclick="$('.modal').modal('show')" value="Delete" action="#{extraController.confirmDelete(extra)}" styleClass="btn btn-sm btn-danger">
+                    <f:ajax execute="@this" render="delete-modal"/>
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
+</ui:composition>

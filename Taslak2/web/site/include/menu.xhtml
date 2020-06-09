@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1"></meta>
+
+        <title>About Us| Music Land</title>
+        <link href="/Taslak2/resources/bootstrap.css" rel="stylesheet"></link>
+        <!-- Loading third party fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" type="text/css"></link>
+        <link href="/Taslak2/resources/fonts/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
+        <!-- Loading main css file -->
+        <link rel="stylesheet" href="/Taslak2/resources/style.css"></link>
+                		
+        <script src="/Taslak2/resources/js/plugins.js"></script>
+        <script src="/Taslak2/resources/js/app.js"></script>
+        <script src="/Taslak2/resources/js/jquery-3.3.1.min.js"></script>
+        <script src="/Taslak2/resources/js/bootstrap.js"></script>
+        
+    </h:head>
+        <div id="site-content">
+            <header class="site-header">
+                <div class="col-md-12">
+                    <a href="/Taslak2/index.xhtml" id="branding">
+                        <img src="/Taslak2/resources/images/logo.png" width="60px" height="50px" style="margin-right: -20px" ></img>                        
+                    </a> <!-- #branding -->
+                    <h:form>
+                    <nav class="main-navigation">
+                <ul class="menu">                    
+                    <li class="menu-item " style="margin-right: -20px"> <a href="/Taslak2/index.xhtml">Home</a> </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink value="Logout" action="/login.xhtml?faces-redirect=true"/> </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink  value="My Page" action="#{navigationControllers.pageK('Games')}"/>  </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink  value="Adminler" action="#{navigationControllers.pageA('admin')}"/> </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink  value="kullanıcılar" action="#{navigationControllers.pageA('kullanici_liste')}"/>  </li>
+                    <li class="menu-item " style="margin-right: -20px">  <h:commandLink  value="Category" action="#{navigationControllers.pageA('')}"/> </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink  value="Dil" action="#{navigationControllers.pageA('dil')}"/> </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink  value="ulke" action="#{navigationControllers.pageA('ulke')}"/> </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink  value="Album" action="#{navigationControllers.pageA('gamelib')}"/> </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink  value="Game Developers" action="#{navigationCont.pageA('GameDev')}"/> </li>
+                    <li class="menu-item current-menu-item" style="margin-right: -20px"> <h:commandLink  value="Games" action="#{navigationControllers.pageA('game')}"/> </li>
+                    <li class="menu-item " style="margin-right: -20px"> <h:commandLink  value="Extra" action="#{navigationControllers.pageA('extra')}"/> </li>
+                    <li class="menu-item " style="margin-right: -20px">
+                        <div>
+                            <h:outputText value="#{newSignController.tmpUser}" style="color: white;padding-right: 10px;font-style: italic;font-size: 25px"/> 
+                        <h:graphicImage value="/file/#{newSignController.updateToUser.yetki.resim.fileName}" width="70px" height="55px" style="border-radius: 30px" /> 
+                   </div>
+                    </li>                     
+                </ul>
+                </nav>
+            </h:form>
+                    <div class="mobile-menu"></div>
+                </div>
+                </header>
+            
+                </div>
+        
+</ui:composition>
+

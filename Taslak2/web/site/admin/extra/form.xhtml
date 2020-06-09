@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+                <h:form id="extra-form">
+                    <h:panelGrid columns="2">
+                        <f:facet name="header">
+                            <h:outputLabel  rendered="#{extraController.extra.id!=null}">
+                                <b> Update Yada Delete Yapacağiniz Id : </b>
+                            </h:outputLabel>
+                            <h:outputText value="#{extraController.extra.id}" rendered="#{extraControllers.extra.id!=null}"/>
+                            <br/>
+                            <h:message for="game_puan"/><br/>
+                            <h:message for="game_sure"/>
+                            <h:outputLabel value="islem basarili" rendered="#{extraController.sonuc==1}"/> 
+                            <h:outputLabel value="bu game extra bir bilgisi var....." rendered="#{extraController.sonuc==0}"/> 
+                        </f:facet>
+                        <div class="form-group">                                                        
+                            <Label for="game : "> Game  </Label>
+                            <h:selectOneMenu  styleClass="custom-select" id="game" value="#{extraController.extra.game}" converter="GameConventer">                                
+                                <f:selectItems value="#{extraController.gameController.allGame()}" var="extra" itemValue="#{extra}" itemLabel="#{extra.tmp_name}"/>                                
+                            </h:selectOneMenu> 
+                            <h:outputLabel value="Game Puan "/> 
+                            <h:inputText id="game_puan" class="form-control" value="#{extraController.extra.game_puan}" validatorMessage="gecersiz bir deger">
+                                <f:validateDoubleRange minimum="0.0" maximum="10.0"/>
+                            </h:inputText>
+                            
+                            <h:outputLabel value="Game Sure "/>
+                            <h:inputText id="game_sure" class="form-control" value="#{extraController.extra.game_sure}" validatorMessage="gecersiz bir deger" >
+                            <f:validateDoubleRange minimum="0.0"/>
+                            </h:inputText>  
+                            <h:outputLabel value="Ulke "/>
+                            <h:selectOneMenu styleClass="custom-select" id="secilen-ulke" value="#{extraController.extra.ulke}" converter="CountryConventer">
+                                <f:selectItems value="#{extraController.ulkeList.allUlke()}" var="ulke" itemValue="#{ulke}" itemLabel="#{ulke.ulke}"/>                                
+                                </h:selectOneMenu> 
+                            <h:outputLabel value="Game_Dev Şirketi "/>
+                            <h:inputText id="GameDEv_sirket" class="form-control" value="#{extraController.extra.game_sirketi}">
+                            </h:inputText>  
+                           
+                        </div>
+                         </h:panelGrid>
+                        <div class="form-group">
+                            <h:commandButton value="Update" rendered="#{extraController.extra.id!=null}" action="#{extraController.update()}" styleClass="btn btn-primary">
+                                <f:ajax execute="extra-form" render="extra-table extra-form"/>
+                            </h:commandButton>
+                            <h:commandButton value="clear Form" rendered="#{extraController.extra.id!=null}" action="#{extraController.clearForm()}" style="margin-left: 10px" styleClass="btn btn-sm btn-info">
+                                <f:ajax execute="extra-form" render="extra-form"/>
+                            </h:commandButton>
+                            <h:commandButton value="create" rendered="#{extraController.extra.id == null}" action="#{extraController.create()}" styleClass="btn btn-primary" >
+                                <f:ajax execute="extra-form" render="extra-table extra-form"/>
+                            </h:commandButton>      
+                        </div>   
+                    <div style="padding-bottom: 500px"></div>
+                    </h:form>
+    
+</ui:composition>
